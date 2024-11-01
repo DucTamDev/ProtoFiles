@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "MAG.AuthProvider.Infrastructure.Grpc.AuthProvider";
+
+service AuthProviderGrpcService {
+	rpc CreateTemporaryToken(CreateTemporaryTokenRequest) returns (CreateTemporaryTokenResponse);
+}
+
+/// Request Model ///
+message CreateTemporaryTokenRequest {
+	int32 tenantId = 1;
+}
+
+/// Response Model ///
+message CreateTemporaryTokenResponse {
+	string token = 1;
+}

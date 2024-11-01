@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+option csharp_namespace = "MAG.AuthProvider.Infrastructure.Grpc.AuthClient";
+
+service AuthClientGrpcService {
+	rpc GetClientByTenantId(GetClientByTenantIdRequest) returns (GetClientByTenantIdResponse);
+
+	rpc CreateClient(CreateClientRequest) returns (TaskResponse);
+
+	rpc DeleteClient(DeleteClientRequest) returns (TaskResponse);
+
+	rpc CreateClientGrantTypes(CreateClientGrantTypesRequest) returns (TaskResponse);
+
+	rpc CreateClientScopes(CreateClientScopesRequest) returns (TaskResponse);
+
+	rpc CreateClientRedirectUris(CreateClientRedirectUrisRequest) returns (TaskResponse);
+
+	rpc CreateClientSecret(CreateClientSecretRequest) returns (TaskResponse);
+
+	rpc DeleteClientGrantTypes(DeleteClientGrantTypesRequest) returns (TaskResponse);
+
+	rpc DeleteClientScopes(DeleteClientScopesRequest) returns (TaskResponse);
+
+	rpc DeleteClientRedirectUris(DeleteClientRedirectUrisRequest) returns (TaskResponse);
+}
+
+/// Request Model ///
+message GetClientByTenantIdRequest {
+	string tenant_id = 1;
+}
+
+message CreateClientRequest {
+	string client_id = 1;
+	string client_name = 2;
+	repeated string client_secrets = 3;
+	string logo_uri = 4;
+	bool require_consent = 5;
+	bool require_pkce = 6;
+	repeated string redirect_uris = 7;
+	string post_logout_redirect_uris = 8;
+	repeated string allowed_scopes = 9;
+	repeated string allowed_cors_origins = 10;
+	repeated string allowed_grant_types = 11;
+	bool include_default_scopes = 12;
+	int32 access_token_lifetime = 13;
+	int32 absolute_refresh_token_lifetime = 14;
+	int32 sliding_refresh_token_lifetime = 15;
+}
+
+message DeleteClientRequest {
+	string client_id = 1;
+}
+
+message CreateClientGrantTypesRequest {
+	string client_id = 1;
+	repeated string grant_types = 2;
+}
+
+message CreateClientScopesRequest {
+	string client_id = 1;
+	repeated string allowed_scopes = 2;
+}
+
+message CreateClientRedirectUrisRequest {
+	string client_id = 1;
+	repeated string redirect_uris = 2;
+}
+
+message CreateClientSecretRequest {
+	string client_id = 1;
+	string client_secret = 2;
+}
+
+message DeleteClientGrantTypesRequest {
+	string client_id = 1;
+	repeated string grant_types = 2;
+}
+
+message DeleteClientScopesRequest {
+	string client_id = 1;
+	repeated string allowed_scopes = 2;
+}
+
+message DeleteClientRedirectUrisRequest {
+	string client_id = 1;
+	repeated string redirect_uris = 2;
+}
+
+/// Response Model ///
+message TaskResponse {
+	bool succeeded = 1;
+}
+
+message GetClientByTenantIdResponse {
+	string client_id = 1;
+	string client_name = 2;
+	repeated string client_secrets = 3;
+}
