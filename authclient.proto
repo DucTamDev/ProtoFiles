@@ -22,6 +22,8 @@ service AuthClientGrpcService {
 	rpc DeleteClientScopes(DeleteClientScopesRequest) returns (TaskResponse);
 
 	rpc DeleteClientRedirectUris(DeleteClientRedirectUrisRequest) returns (TaskResponse);
+
+ 	rpc CreateClient2(CreateClientRequest) returns (TaskResponse);
 }
 
 /// Request Model ///
